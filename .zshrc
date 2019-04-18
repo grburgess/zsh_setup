@@ -1,5 +1,8 @@
-# Path to your oh-my-zsh installation.
-# https://github.com/bitboss-ca/my-oh-my-zsh
+#  _____    _
+# |__  /___| |__  _ __ ___
+#   / // __| '_ \| '__/ __|
+#  / /_\__ \ | | | | | (__
+# /____|___/_| |_|_|  \___|
 
 
 
@@ -53,28 +56,116 @@ export MPLBACKEND='Agg'
 # SPACESHIP_DIR_SHOW="true"
 
 # Load Nerd Fonts with Powerlevel9k theme for Zsh
-POWERLEVEL9K_MODE='nerdfont-complete'
-source ~/.powerline/powerlevel9k/powerlevel9k.zsh-theme
-# Customise the Powerlevel9k prompts
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh virtualenv  dir vcs ip  newline status )
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-POWERLEVEL9K_HIDE_BRANCH_ICON=true
 
+
+POWERLEVEL9K_MODE='nerdfont-complete'
+
+# Customise the Powerlevel9k prompts
+
+
+P9KGT_TERMINAL_BACKGROUND='238'
+MINT='042'
+YELLOW='228'
+RED='160'
+BLUE='003'
+# Prompt elements
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time virtualenv)
+
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+
+POWERLEVEL9K_HOME_ICON='\ufb8a'
+POWERLEVEL9K_HOME_SUB_ICON='\ue36e'
+POWERLEVEL9K_FOLDER_ICON='\ue36e'
+
+
+POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND=$P9KGT_TERMINAL_BACKGROUND
+POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND=$MINT
+
+POWERLEVEL9K_DIR_HOME_BACKGROUND=$MINT
+POWERLEVEL9K_DIR_HOME_FOREGROUND=$P9KGT_TERMINAL_BACKGROUND
+
+
+
+
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND=$P9KGT_TERMINAL_BACKGROUND
+POWERLEVEL9K_DIR_HOME_FOREGROUND=$P9KGT_TERMINAL_BACKGROUND
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND=$P9KGT_TERMINAL_BACKGROUND
+POWERLEVEL9K_DIR_ETC_FOREGROUND=$P9KGT_TERMINAL_BACKGROUND
+
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND=$MINT
+POWERLEVEL9K_DIR_HOME_BACKGROUND=$MINT
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND=$MINT
+POWERLEVEL9K_DIR_ETC_BACKGROUND=$MINT
+
+
+
+
+POWERLEVEL9K_VIRTUALENV_BACKGROUND=$P9KGT_TERMINAL_BACKGROUND
+POWERLEVEL9K_VIRTUALENV_FOREGROUND='227'
+
+
+
+POWERLEVEL9K_VCS_CLEAN_BACKGROUND=$P9KGT_TERMINAL_BACKGROUND
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=$P9KGT_TERMINAL_BACKGROUND
+POWERLEVEL9K_VCS_CLOBBERED_BACKGROUND=$P9KGT_TERMINAL_BACKGROUND
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=$P9KGT_TERMINAL_BACKGROUND
+
+
+POWERLEVEL9K_VCS_CLEAN_FOREGROUND=$MINT
+POWERLEVEL9K_VCS_MODIFIED_FOREGROUND=$YELLOW
+POWERLEVEL9K_VCS_CLOBBERED_FOREGROUND=$RED
+POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=$BLUE
+
+POWERLEVEL9K_CUSTOM_WIFI_SIGNAL="zsh_wifi_signal"
+POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_BACKGROUND="white"
+POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_FOREGROUND="black"
+
+zsh_wifi_signal(){
+        local output=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I)
+        local airport=$(echo $output | grep 'AirPort' | awk -F': ' '{print $2}')
+
+        if [ "$airport" = "Off" ]; then
+                local color='%F{black}'
+                echo -n "%{$color%}Wifi Off"
+        else
+                local ssid=$(echo $output | grep ' SSID' | awk -F': ' '{print $2}')
+                local speed=$(echo $output | grep 'lastTxRate' | awk -F': ' '{print $2}')
+                local color='%F{black}'
+
+                [[ $speed -gt 100 ]] && color='%F{black}'
+                [[ $speed -lt 50 ]] && color='%F{red}'
+
+                echo -n "%{$color%}$speed Mbps \uf1eb%{%f%}" # removed char not in my PowerLine font
+        fi
+}
+
+#POWERLEVEL9K_VCS_CLEAN_FOREGROUND='099'
+
+
+#Icon config
+
+#POWERLEVEL9K_STATUS_OK_ICON='\UF2B0'
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\ue0c6'
+POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\ue0c7'
+
+#POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+# POWERLEVEL9K_HIDE_BRANCH_ICON=true
+#POWERLEVEL9K_SHORTEN_STRATEGY='truncate_absolute_chars'
+
+
+# Uncomment the following line to change how often to auto-update (in days).
+export UPDATE_ZSH_DAYS=13
+
+
+# Uncomment the following line to enable command auto-correction.
+ ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+#COMPLETION_WAITING_DOTS="true"
 
 ZSH_DISABLE_COMPFIX='true'
-
-source $ZSH/oh-my-zsh.sh
-
-
-# shit to get completion working
-# have a look here: https://docs.docker.com/compose/completion/#zsh
-
-
-fpath=(/usr/local/share/zsh-completions $fpath)
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
-autoload -Uz compinit && compinit -i
 
 
 #Uncomment the following line to use case-sensitive completion.
@@ -87,27 +178,36 @@ HYPHEN_INSENSITIVE="true"
 # Uncomment the following line to disable bi-weekly auto-update checks.
 DISABLE_AUTO_UPDATE="false"
 
-# Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=13
+TERM=xterm-256color
 
-
-# Uncomment the following line to enable command auto-correction.
- ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
- COMPLETION_WAITING_DOTS="true"
+source $ZSH/oh-my-zsh.sh
 
 
 
- # Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='te'
- else
-   export EDITOR='te'
- fi
 
 
-# User configuration
+
+
+
+# shit to get completion working
+# have a look here: https://docs.docker.com/compose/completion/#zsh
+
+
+fpath=(/usr/local/share/zsh-completions $fpath)
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
+autoload -Uz compinit && compinit -i
+
+
+
+
+ # # Preferred editor for local and remote sessions
+ # if [[ -n $SSH_CONNECTION ]]; then
+ #   export EDITOR='emacs'
+ # else
+ #   export EDITOR='te'
+ # fi
+
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/Library/TeX/texbin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$PATH"
 
@@ -154,7 +254,7 @@ alias fermi="docker run -it --rm -p 8888:8888 -v ${PWD}:/workdir -w /workdir grb
 
 #source $(dirname $(gem which colorls))/tab_complete.sh
 
-alias ls='colorls --sort-dirs --report'
+alias ls='colorls --sort-dirs'
 alias lc='colorls --tree'
 
 ### Aliasi
@@ -188,3 +288,4 @@ export PATH="/usr/local/opt/node@8/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+source ~/.powerline/powerlevel9k/powerlevel9k.zsh-theme
