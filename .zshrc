@@ -121,6 +121,7 @@ POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=$BLUE
 
 #Icon config
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 #POWERLEVEL9K_STATUS_OK_ICON='\UF2B0'
 POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\ue0c6'
@@ -177,12 +178,14 @@ autoload -Uz compinit && compinit -i
 
 
 
- # # Preferred editor for local and remote sessions
- # if [[ -n $SSH_CONNECTION ]]; then
- #   export EDITOR='emacs'
- # else
- #   export EDITOR='te'
- # fi
+ # Preferred editor for local and remote sessions
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='emacs'
+ else
+   export EDITOR='te'
+ fi
+
+
 
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/Library/TeX/texbin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$PATH"
@@ -219,7 +222,7 @@ alias necromancer="ssh -X necromancer.mpe.mpg.de"
 alias destroyEverything="rm -rf"
 alias doEverything="sudo"
 alias notebook="jupyter notebook"
-
+alias et='te'
 alias rm="rm -vi"
 #alias headas="source $HEADAS/headas-init.sh"
 
