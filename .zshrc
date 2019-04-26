@@ -17,7 +17,9 @@ plugins=(git
 	 pip
 	 osx
 	 python
-	 iterm2)
+	 iterm2
+	 colorize
+	)
 
 
 
@@ -183,13 +185,13 @@ autoload -Uz compinit && compinit -i
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='emacs'
  else
-   export EDITOR='te'
+   export EDITOR='emacs'
  fi
 
 
 
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/Library/TeX/texbin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$PATH"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/local/lib/ruby/gems/bin:/usr/bin:/Library/TeX/texbin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$PATH"
 
 #export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
@@ -215,28 +217,7 @@ export WORKON_HOME=~/.environs
 
 source /usr/local/bin/virtualenvwrapper.sh
 
-alias gofermi="ssh -Y fermi@ds54.mpe.mpg.de"
-alias golocal="ssh ga-ws71.mpe.mpg.de"
-alias necromancer="ssh -X necromancer.mpe.mpg.de"
-# alias emacsGUI="/Applications/Emacs.app/Contents/MacOS/Emacs $@"
-#alias emacs="/usr/local/bin/emacs -nw"
-alias destroyEverything="rm -rf"
-alias doEverything="sudo"
-alias notebook="jupyter notebook"
-alias et='te'
-alias rm="rm -vi"
-#alias headas="source $HEADAS/headas-init.sh"
-
-alias 3ml="source ~/.3ml.sh"
-
-# start the fermi docker
-alias fermi="docker run -it --rm -p 8888:8888 -v ${PWD}:/workdir -w /workdir grburgess/fermi"
-
-#source $(dirname $(gem which colorls))/tab_complete.sh
-
-alias ls='colorls --sort-dirs'
-alias lc='colorls --tree'
-
+source .alias
 ### Aliasi
 
 # HDF5 Sucks....
@@ -262,10 +243,17 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="/usr/local/opt/node@8/bin:$PATH"
 
 
-
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+
+
+source ~/.powerline/powerlevel9k/powerlevel9k.zsh-theme
+
+# deal with conda
+PATH_WITHOUT_CONDA=$PATH
+PATH_WITH_CONDA="/usr/local/miniconda3/bin:$PATH"
+
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-source ~/.powerline/powerlevel9k/powerlevel9k.zsh-theme
+
+
