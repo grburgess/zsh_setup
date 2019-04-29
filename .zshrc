@@ -206,19 +206,18 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/local/lib/ruby/gems/bin:/usr/bi
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 
-#export CC=gcc-6
+
+# VENV 
  
-export BALROG_DB=/Users/jburgess/Research/balrog/database
-
-# TMOUT=120
-# TRAPALRM() { cmatrix -s}
-
 export WORKON_HOME=~/.environs
 
 source /usr/local/bin/virtualenvwrapper.sh
 
-source .alias
+
 ### Aliasi
+source .alias
+
+
 
 # HDF5 Sucks....
 export HDF5_DISABLE_VERSION_CHECK=1
