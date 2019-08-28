@@ -20,7 +20,8 @@ alias fermi="docker run -it --rm -p 8888:8888 -v ${PWD}:/workdir -w /workdir grb
 alias ls='colorls --sort-dirs'
 alias lc='colorls --tree'
 
-alias cat='ccat'
+alias weather='curl http://v2.wttr.in'
+
 
 
 alias use_conda='export PATH=${PATH_WITH_CONDA}; export PATH="$PATH:$HOME/.rvm/bin"' 

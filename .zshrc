@@ -5,6 +5,8 @@
 # /____|___/_| |_|_|  \___|
 
 
+export PATH="/usr/local/sbin:/usr/local/bin:${PATH}"
+export PATH="/usr/local/lib/ruby/gems/bin:/usr/local/lib/ruby/gems/2.6.0/bin:/Library/TeX/texbin:/opt/X11/bin:${PATH}"
 
 
 plugins=(git
@@ -140,7 +142,7 @@ export UPDATE_ZSH_DAYS=13
 
 
 # Uncomment the following line to enable command auto-correction.
- ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 #COMPLETION_WAITING_DOTS="true"
@@ -191,7 +193,7 @@ autoload -Uz compinit && compinit -i
 
 
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/local/lib/ruby/gems/bin:/usr/bin:/Library/TeX/texbin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$PATH"
+
 
 #export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
@@ -208,7 +210,7 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/local/lib/ruby/gems/bin:/usr/bi
 
 
 # VENV 
- 
+VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3 
 export WORKON_HOME=~/.environs
 
 source /usr/local/bin/virtualenvwrapper.sh
@@ -239,7 +241,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-export PATH="/usr/local/opt/node@8/bin:$PATH"
+# export PATH="/usr/local/opt/node@8/bin:$PATH"
 
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -247,12 +249,14 @@ export PATH="/usr/local/opt/node@8/bin:$PATH"
 
 source ~/.powerline/powerlevel9k/powerlevel9k.zsh-theme
 
-# deal with conda
-PATH_WITHOUT_CONDA=$PATH
-PATH_WITH_CONDA="/usr/local/miniconda3/bin:$PATH"
+# # deal with conda
+# PATH_WITHOUT_CONDA=$PATH
+# PATH_WITH_CONDA="/usr/local/miniconda3/bin:$PATH"
 
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+# export PATH="$PATH:$HOME/.rvm/bin"
 
 
+
+#source $(dirname $(gem which colorls))/tab_complete.sh
