@@ -67,23 +67,28 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 # Customise the Powerlevel9k prompts
 
 
-P9KGT_TERMINAL_BACKGROUND='234'
-MINT='042'
+P9KGT_TERMINAL_BACKGROUND='231'
+MINT='16'
 YELLOW='228'
 RED='160'
 BLUE='003'
 # Prompt elements
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon  context dir)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(  context dir)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs virtualenv)
 
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_PROMPT_ON_NEWLINE=false
 
-POWERLEVEL9K_HOME_ICON='\ufb8a'
-POWERLEVEL9K_HOME_SUB_ICON='\ue36e'
+#POWERLEVEL9K_HOME_ICON='\ufb8a' # skull
+POWERLEVEL9K_HOME_ICON='\uf183' # man
+
+#POWERLEVEL9K_HOME_SUB_ICON='\ue36e' # alien
+POWERLEVEL9K_HOME_SUB_ICON='\uf79c'
+
 POWERLEVEL9K_FOLDER_ICON='\ue36e'
 
 DEFAULT_USER='jburgess'
+
 POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND=$P9KGT_TERMINAL_BACKGROUND
 POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND=$MINT
 
@@ -129,8 +134,8 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 #POWERLEVEL9K_STATUS_OK_ICON='\UF2B0'
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\ue0c6'
-POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\ue0c7'
+# POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\ue0c6'
+# POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\ue0c7'
 
 #POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 # POWERLEVEL9K_HIDE_BRANCH_ICON=true
@@ -248,6 +253,15 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 source ~/.powerline/powerlevel9k/powerlevel9k.zsh-theme
+export PATH=/usr/local/opt/python/libexec/bin:$PATH
+
+
+
+export OMP_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+
+
 
 # # deal with conda
 # PATH_WITHOUT_CONDA=$PATH
@@ -260,3 +274,6 @@ source ~/.powerline/powerlevel9k/powerlevel9k.zsh-theme
 
 
 #source $(dirname $(gem which colorls))/tab_complete.sh
+
+# added by travis gem
+[ -f /Users/jburgess/.travis/travis.sh ] && source /Users/jburgess/.travis/travis.sh
