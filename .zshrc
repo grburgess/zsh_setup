@@ -17,9 +17,7 @@ plugins=(git
 	 virtualenv
 	 emacs
 	 pip
-	 osx
 	 python
-	 iterm2
 	 colorize
 	)
 
@@ -178,10 +176,10 @@ source $ZSH/oh-my-zsh.sh
 # have a look here: https://docs.docker.com/compose/completion/#zsh
 
 
-fpath=(/usr/local/share/zsh-completions $fpath)
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
-autoload -Uz compinit && compinit -i
+# fpath=(/usr/local/share/zsh-completions $fpath)
+# source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
+# autoload -Uz compinit && compinit -i
 
 
 
@@ -213,8 +211,8 @@ autoload -Uz compinit && compinit -i
 
 
 # VENV 
-VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3 
-export WORKON_HOME=~/.environs
+VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3 
+export WORKON_HOME=~/.venv
 
 source /usr/local/bin/virtualenvwrapper.sh
 
@@ -240,9 +238,9 @@ unsetopt notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # export PATH="/usr/local/opt/node@8/bin:$PATH"
 
@@ -251,7 +249,7 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 #source ~/.powerline/powerlevel9k/powerlevel9k.zsh-theme
-export PATH=/usr/local/opt/python/libexec/bin:$PATH
+#export PATH=/usr/local/opt/python/libexec/bin:$PATH
 
 
 
@@ -274,4 +272,4 @@ export NUMEXPR_NUM_THREADS=1
 #source $(dirname $(gem which colorls))/tab_complete.sh
 
 # added by travis gem
-[ -f /Users/jburgess/.travis/travis.sh ] && source /Users/jburgess/.travis/travis.sh
+#[ -f /Users/jburgess/.travis/travis.sh ] && source /Users/jburgess/.travis/travis.sh
