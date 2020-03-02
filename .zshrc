@@ -10,18 +10,19 @@ export PATH="/usr/local/lib/ruby/gems/bin:/usr/local/lib/ruby/gems/2.6.0/bin:/Li
 
 
 plugins=(git
-	 github
-	 git-extras
-	 docker
-	 docker-compose
-	 virtualenv
-	 emacs
-	 pip
-	 osx
-	 python
-	 iterm2
-	 colorize
-	)
+         github
+         git-extras
+         docker
+         docker-compose
+         virtualenv
+         emacs
+         pip
+         osx
+         python
+         iterm2
+         colorize
+
+        )
 
 
 
@@ -46,15 +47,15 @@ export MPLBACKEND='Agg'
 
 
 SPACESHIP_PROMPT_ORDER=(
-  time
-  user
-  host
-  dir
-  git
-  venv
-  pyenv
-  line_sep
-  char
+    time
+    user
+    host
+    dir
+    git
+    venv
+    pyenv
+    line_sep
+    char
 )
 # PROMPT
 SPACESHIP_CHAR_SYMBOL=" "
@@ -163,8 +164,8 @@ HYPHEN_INSENSITIVE="true"
 # Uncomment the following line to disable bi-weekly auto-update checks.
 DISABLE_AUTO_UPDATE="false"
 
-TERM=xterm-256color
-
+#TERM=xterm-256color
+TERM=xterm-24bits
 source $ZSH/oh-my-zsh.sh
 
 
@@ -186,12 +187,12 @@ autoload -Uz compinit && compinit -i
 
 
 
- # Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='emacs'
- else
-   export EDITOR='emacs'
- fi
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='emacs'
+else
+    export EDITOR='emacs'
+fi
 
 
 
@@ -206,21 +207,21 @@ autoload -Uz compinit && compinit -i
 
 
 # Compilation flags
- export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 
 
-# VENV 
-VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3 
+# VENV
+VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 export WORKON_HOME=~/.environs
 
 source /usr/local/bin/virtualenvwrapper.sh
 
 
 ### Aliasi
-source .alias
+source ~/.alias
 
 
 
@@ -275,3 +276,6 @@ export NUMEXPR_NUM_THREADS=1
 
 # added by travis gem
 [ -f /Users/jburgess/.travis/travis.sh ] && source /Users/jburgess/.travis/travis.sh
+
+
+
