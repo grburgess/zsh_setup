@@ -5,24 +5,24 @@
 # /____|___/_| |_|_|  \___|
 
 
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+
+
 export PATH="/usr/local/sbin:/usr/local/bin:${PATH}"
 export PATH="/usr/local/lib/ruby/gems/bin:/usr/local/lib/ruby/gems/2.6.0/bin:/Library/TeX/texbin:/opt/X11/bin:${PATH}"
 
+# plugins=(git
+#          github
+#          git-extras
+#          virtualenv
+#          emacs
+#          pip
+#          osx
+#          python
+#          iterm2
+#          colorize
 
-plugins=(git
-         github
-         git-extras
-         docker
-         docker-compose
-         virtualenv
-         emacs
-         pip
-         osx
-         python
-         iterm2
-         colorize
-
-        )
+#         )
 
 
 
@@ -92,7 +92,7 @@ SPACESHIP_DIR_SHOW=true
 SPACESHIP_DIR_PREFIX="in "
 SPACESHIP_DIR_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
 SPACESHIP_DIR_TRUNC=3
-SPACESHIP_DIR_COLOR="cyan"
+SPACESHIP_DIR_COLOR="098"
 # GIT
 SPACESHIP_GIT_SHOW=true
 SPACESHIP_GIT_PREFIX="on "
@@ -164,25 +164,22 @@ HYPHEN_INSENSITIVE="true"
 # Uncomment the following line to disable bi-weekly auto-update checks.
 DISABLE_AUTO_UPDATE="false"
 
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+
 #TERM=xterm-256color
 TERM=xterm-24bits
 source $ZSH/oh-my-zsh.sh
-
-
-
-
-
-
 
 
 # shit to get completion working
 # have a look here: https://docs.docker.com/compose/completion/#zsh
 
 
-fpath=(/usr/local/share/zsh-completions $fpath)
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
-autoload -Uz compinit && compinit -i
+# fpath=(/usr/local/share/zsh-completions $fpath)
+# source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
+# autoload -Uz compinit && compinit -i
 
 
 
@@ -221,7 +218,33 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 
 ### Aliasi
-source ~/.alias
+#source ~/.alias
+
+alias gofermi="ssh -Y fermi@ds54.mpe.mpg.de"
+alias golocal="ssh ga-ws71.mpe.mpg.de"
+alias necromancer="ssh -X necromancer.mpe.mpg.de"
+
+#alias emacs="/usr/local/bin/emacs -nw"
+alias notebook="jupyter notebook"
+alias et='te'
+alias rm="rm -vi"
+#alias headas="source $HEADAS/headas-init.sh"
+
+# alias 3ml="source ~/.3ml.sh"
+
+# start the fermi docker
+alias fermi="docker run -it --rm -p 8888:8888 -v ${PWD}:/workdir -w /workdir grburgess/fermi"
+
+#source $(dirname $(gem which colorls))/tab_complete.sh
+
+# alias ls='colorls --sort-dirs'
+# alias lc='colorls --tree'
+
+alias ls="exa"
+alias ll="exa --long --header --git --time-style long-iso"
+
+# alias weather='curl v2.wttr.in/München'
+# alias qweather='curl wttr.in/München?format="%l:+%c+%t"'
 
 
 
@@ -234,9 +257,11 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
-
 setopt appendhistory autocd extendedglob
 unsetopt notify
+
+
+export CMDSTAN=/Users/jburgess/.cmdstanpy/cmdstan
 
 bindkey -e
 # End of lines configured by zsh-newuser-install
@@ -255,10 +280,19 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH=/usr/local/opt/python/libexec/bin:$PATH
 
 
-
+export ATOMDB=~/.threeml/atomdb
 export OMP_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
+export MPLBACKEND='Agg'
+
+
+# function necro-jupy() {
+
+
+#     ssh -N -L ${1}:localhost:${1} necromancer.mpe.mpg.de
+    
+#     }
 
 
 
@@ -279,3 +313,71 @@ export NUMEXPR_NUM_THREADS=1
 
 
 
+eval "$(direnv hook zsh)"
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zinit-zsh/z-a-rust \
+    zinit-zsh/z-a-as-monitor \
+    zinit-zsh/z-a-patch-dl \
+    zinit-zsh/z-a-bin-gem-node
+
+### End of Zinit's installer chunk
+zinit ice svn
+zinit snippet OMZ::plugins/osx
+
+zinit ice svn lucid
+zinit snippet OMZ::plugins/pip
+
+zinit ice svn lucid
+zinit snippet OMZ::plugins/emacs
+
+zinit ice svn lucid
+zinit snippet OMZ::plugins/iterm2
+
+zinit ice svn lucid
+zinit snippet OMZ::plugins/virtualenv
+
+
+zinit load zsh-users/zsh-autosuggestions
+zinit load zdharma/fast-syntax-highlighting
+
+# Binaries
+zinit from"gh-r" as"program" for junegunn/fzf-bin
+zinit from"gh-r" as"program" mv"exa-* -> exa" for ogham/exa
+zinit from"gh-r" as"program" mv"jq-* -> jq" for stedolan/jq
+zinit from"gh-r" as"program" pick"*/rg" for BurntSushi/ripgrep
+zinit from"gh-r" as"program" pick"*/bat" for @sharkdp/bat
+zinit from"gh-r" as"program" pick"*/**/terminal-notifier" for julienXX/terminal-notifier
+
+# Oh-My-Zsh snippets
+zinit is-snippet for OMZ::lib/directories.zsh
+zinit is-snippet for OMZ::lib/theme-and-appearance.zsh
+zinit is-snippet for OMZ::lib/key-bindings.zsh
+zinit is-snippet for OMZ::lib/history.zsh
+zinit is-snippet for OMZ::lib/git.zsh
+zinit is-snippet for OMZ::plugins/git/git.plugin.zsh
+zinit is-snippet for OMZ::plugins/history/history.plugin.zsh
+zinit is-snippet for OMZ::plugins/extract/extract.plugin.zsh
+zinit atload"zpcompinit" lucid as"completion" for OMZ::plugins/docker/_docker
+
+# Plugins
+zinit for rupa/z
+zinit for changyuheng/fz
+zinit for changyuheng/zsh-interactive-cd
+zinit wait lucid for zdharma/fast-syntax-highlighting
+zinit pick"shell/completion.zsh" src"shell/key-bindings.zsh" for junegunn/fzf
