@@ -241,7 +241,7 @@ alias fermi="docker run -it --rm -p 8888:8888 -v ${PWD}:/workdir -w /workdir grb
 # alias lc='colorls --tree'
 
 alias ls="exa"
-alias ll="exa --long --header --git --time-style long-iso"
+alias lg="exa -l --header --git --time-style long-iso"
 
 # alias weather='curl v2.wttr.in/München'
 # alias qweather='curl wttr.in/München?format="%l:+%c+%t"'
