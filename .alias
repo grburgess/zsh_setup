@@ -1,10 +1,5 @@
-alias gofermi="ssh -Y fermi@ds54.mpe.mpg.de"
-alias golocal="ssh ga-ws71.mpe.mpg.de"
-alias necromancer="ssh -X necromancer.mpe.mpg.de"
 # alias emacsGUI="/Applications/Emacs.app/Contents/MacOS/Emacs $@"
 #alias emacs="/usr/local/bin/emacs -nw"
-alias destroyEverything="rm -rf"
-alias doEverything="sudo"
 alias notebook="jupyter notebook"
 alias et='te'
 alias rm="rm -vi"
@@ -17,8 +12,8 @@ alias fermi="docker run -it --rm -p 8888:8888 -v ${PWD}:/workdir -w /workdir grb
 
 #source $(dirname $(gem which colorls))/tab_complete.sh
 
-alias ls='colorls --sort-dirs'
-alias lc='colorls --tree'
+# alias ls='colorls --sort-dirs'
+# alias lc='colorls --tree'
 
 alias weather='curl http://v2.wttr.in'
 

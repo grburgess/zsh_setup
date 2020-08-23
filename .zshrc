@@ -1,12 +1,13 @@
+
 #  _____    _
 # |__  /___| |__  _ __ ___
 #   / // __| '_ \| '__/ __|
 #  / /_\__ \ | | | | | (__
 # /____|___/_| |_|_|  \___|
-
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
 
 export PATH="/usr/local/sbin:/usr/local/bin:${PATH}"
-export PATH="/usr/local/lib/ruby/gems/bin:/usr/local/lib/ruby/gems/2.6.0/bin:/Library/TeX/texbin:/opt/X11/bin:${PATH}"
+#export PATH="/usr/local/lib/ruby/gems/bin:/usr/local/lib/ruby/gems/2.6.0/bin:/Library/TeX/texbin:/opt/X11/bin:${PATH}"
 
 
 plugins=(git
@@ -161,8 +162,8 @@ HYPHEN_INSENSITIVE="true"
 # Uncomment the following line to disable bi-weekly auto-update checks.
 DISABLE_AUTO_UPDATE="false"
 
-TERM=xterm-256color
-
+#TERM=xterm-256color
+TERM=xterm-24bit
 source $ZSH/oh-my-zsh.sh
 
 
@@ -210,7 +211,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 
-# VENV 
+# # VENV 
 VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3 
 export WORKON_HOME=~/.venv
 
@@ -235,6 +236,8 @@ SAVEHIST=1000
 setopt appendhistory autocd extendedglob
 unsetopt notify
 
+export CMDSTAN=/home/jburgess/.cmdstanpy/cmdstan/
+
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
@@ -250,7 +253,6 @@ bindkey -e
 
 #source ~/.powerline/powerlevel9k/powerlevel9k.zsh-theme
 #export PATH=/usr/local/opt/python/libexec/bin:$PATH
-
 
 
 export OMP_NUM_THREADS=1
@@ -273,3 +275,44 @@ export NUMEXPR_NUM_THREADS=1
 
 # added by travis gem
 #[ -f /Users/jburgess/.travis/travis.sh ] && source /Users/jburgess/.travis/travis.sh
+#export PATH="$PATH:$HOME/miniconda3/bin"
+# export PATH="$HOME/miniconda3/bin:$PATH"  # commented out by conda initialize
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/jburgess/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/jburgess/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/jburgess/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/jburgess/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
+
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zinit-zsh/z-a-rust \
+    zinit-zsh/z-a-as-monitor \
+    zinit-zsh/z-a-patch-dl \
+    zinit-zsh/z-a-bin-gem-node
+
+### End of Zinit's installer chunk
