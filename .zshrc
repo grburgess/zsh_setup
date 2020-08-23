@@ -246,8 +246,6 @@ alias fermi="docker run -it --rm -p 8888:8888 -v ${PWD}:/workdir -w /workdir grb
 # alias ls='colorls --sort-dirs'
 # alias lc='colorls --tree'
 
-alias ls="exa"
-alias lg="exa --long --header --git --time-style long-iso"
 
 # alias weather='curl v2.wttr.in/München'
 # alias qweather='curl wttr.in/München?format="%l:+%c+%t"'
@@ -290,47 +288,6 @@ export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 export MPLBACKEND='Agg'
 
-
-# function necro-jupy() {
-
-
-#     ssh -N -L ${1}:localhost:${1} necromancer.mpe.mpg.de
-    
-#     }
-
-
-
-# # deal with conda
-# PATH_WITHOUT_CONDA=$PATH
-# PATH_WITH_CONDA="/usr/local/miniconda3/bin:$PATH"
-
-
-# # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$PATH:$HOME/.rvm/bin"
-
-
-
-#source $(dirname $(gem which colorls))/tab_complete.sh
-
-# added by travis gem
-#[ -f /Users/jburgess/.travis/travis.sh ] && source /Users/jburgess/.travis/travis.sh
-#export PATH="$PATH:$HOME/miniconda3/bin"
-# export PATH="$HOME/miniconda3/bin:$PATH"  # commented out by conda initialize
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/jburgess/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/jburgess/miniconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/jburgess/miniconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/jburgess/miniconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
 
 
 ### Added by Zinit's installer
@@ -378,9 +335,9 @@ zinit load zdharma/fast-syntax-highlighting
 zinit from"gh-r" as"program" for junegunn/fzf-bin
 zinit from"gh-r" as"program" mv"exa-* -> exa" for ogham/exa
 zinit from"gh-r" as"program" mv"jq-* -> jq" for stedolan/jq
-zinit from"gh-r" as"program" pick"*/rg" for BurntSushi/ripgrep
-zinit from"gh-r" as"program" pick"*/bat" for @sharkdp/bat
-zinit from"gh-r" as"program" pick"*/**/terminal-notifier" for julienXX/terminal-notifier
+# zinit from"gh-r" as"program" pick"*/rg" for BurntSushi/ripgrep
+# zinit from"gh-r" as"program" pick"*/bat" for @sharkdp/bat
+# zinit from"gh-r" as"program" pick"*/**/terminal-notifier" for julienXX/terminal-notifier
 
 # Oh-My-Zsh snippets
 zinit is-snippet for OMZ::lib/directories.zsh
@@ -399,3 +356,6 @@ zinit for changyuheng/fz
 zinit for changyuheng/zsh-interactive-cd
 zinit wait lucid for zdharma/fast-syntax-highlighting
 zinit pick"shell/completion.zsh" src"shell/key-bindings.zsh" for junegunn/fzf
+
+alias ls="exa --icons"
+alias lg="exa --long --header --git --time-style long-iso"
